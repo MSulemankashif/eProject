@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-exports.project = async (req, res, next) => {
+const protect = async (req, res, next) => {
     let token;
 
-    if(req.headers,authorization?.startsWith("Bearer")) {
+    if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(" ")[1];
     }
 
@@ -21,7 +21,7 @@ exports.project = async (req, res, next) => {
     }
 };
 
-exports.authorize = (...roles) => {
+const authorize = (...roles) => {
     return (req, res, next) => {
         if (!roles.includes(req.user.role)) {
             return res.status(403).json({ message: "Forbidden" });
@@ -29,3 +29,8 @@ exports.authorize = (...roles) => {
         next();
     };
 };
+
+module.exports = {
+    protect,
+    authorize
+}
