@@ -1,15 +1,15 @@
 const express = require("express");
 const {protect} = require("../middleware/authMiddleware");
 const {
-    createMaintenanceRequest,
-    getMaintenanceRequests,
-    updateMaintenanceRequestStatus,
+    createMaintenance,
+    getMaintenances,
+    updateMaintenanceStatus,
 } = require("../controllers/maintenanceController");
 
 const router = express.Router();
 
-router.post("/", protect, createMaintenanceRequest);
-router.get("/", protect, getMaintenanceRequests);
-router.put("/:id/status", protect, updateMaintenanceRequestStatus);
+router.post("/", protect, createMaintenance);
+router.get("/", protect, getMaintenances);
+router.put("/:id/status", protect, updateMaintenanceStatus);
 
 module.exports = router;
