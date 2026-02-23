@@ -19,5 +19,12 @@ exports.getAllFeedbacks = async (req, res) => {
             const all = await Feedback.find().populate("User", "name email");
             return res.json(all);
         }
+        const list = await Feedback.find({ user: req.user.id});
+        res.json(list);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error"});
     }
+
+
 }
