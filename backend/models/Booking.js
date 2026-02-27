@@ -8,7 +8,7 @@ const bookingSchema = new mongoose.Schema(
         checkOutDate: Date,
         status: {
             type: String,
-            enum: ["reserved", "checked-in", "checked-out"],
+            enum: ["reserved", "checked-in", "checked-out", "cancelled"],
             default: "reserved",
         },
         totalAmount: Number,

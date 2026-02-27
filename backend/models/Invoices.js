@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const invoiceSchema = new mongoose.Schema(
     {
         booking: { type: mongoose.Schema.Types.ObjectId, ref: "Booking", required: true },
-        services: [
-            {
-                name: String,
-                price: Number,
-            },
-        ],
+        roomCharges: Number,
+        serviceCharges: Number,
+        tax: Number,
+        Total: Number,
+        paid: {
+            type: boolean,
+            default: false
+        },
         totalAmount : Number,
         paymentStatus: {
             type: String,
